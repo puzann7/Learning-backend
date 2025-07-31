@@ -3,8 +3,26 @@ import mongoose from "mongoose"
 import { DB_NAME } from "./constants.js";
 import express, { json } from "express"
 import connectDB from "./db/index.js";
+import { app } from './app.js';
 
-connectDB();
+//note: when using middlewares, we use app.use()
+
+connectDB()
+.then(()=>{
+    app.on("error",(err)=>{
+        console.log("handing error",err);
+    })
+    app.listen(process.env.PORT || 8000,()=>{
+        console.log(`poojan's server running at port ${process.env.PORT}`);
+    })
+})
+.catch((err)=>{
+    console.log("there was some error here",err);
+})
+
+
+
+
 
 
 // const app = express();

@@ -12,4 +12,6 @@ const connectDB = async ()=>{
     }
 }
 
+//note: this connectDB function, since its asynchronous, it will also return a promise. so we can also to connectDB().then and .catch.
+
 export default connectDB
